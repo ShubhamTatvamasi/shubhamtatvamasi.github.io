@@ -1,2 +1,2 @@
 # ShubhamTatvamasi.com
-My personal webSite
+My Personal WebSite
