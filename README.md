@@ -1,2 +1,2 @@
-# shubhamtatvamasi.github.io
-My WebSite
+# ShubhamTatvamasi.com
+My personal webSite
