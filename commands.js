@@ -95,7 +95,7 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
 
       switch (cmd) {
         case 'clear':
-          output_.innerHTML = '<img align="left" src="pic.jpg" width="100" height="100" style="padding: 0px 10px 20px 0px"><h2 style="letter-spacing: 4px">Shubham Tatvamasi</h2><p>' + new Date() + '</p><p>Enter "help" for more information.</p>';
+          output_.innerHTML = '<img align="left" src="pic.jpg" width="100" height="100" style="padding: 18.1px 10px 20px 0px"><h2 style="letter-spacing: 4px">Shubham Tatvamasi</h2><p>' + new Date() + '</p><p>Enter "help" for more information.</p>';
           this.value = '';
           return;
         case 'clock':
