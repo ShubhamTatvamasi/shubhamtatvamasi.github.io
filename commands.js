@@ -98,6 +98,10 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
           output_.innerHTML = '<img align="left" src="pic.jpg" width="100" height="100" style="padding: 18.1px 10px 20px 0px"><h2 style="letter-spacing: 4px">Shubham Tatvamasi</h2><p>' + new Date() + '</p><p>Enter "help" for more information.</p>';
           this.value = '';
           return;
+        case 'c':
+          output_.innerHTML = '<img align="left" src="pic.jpg" width="100" height="100" style="padding: 18.1px 10px 20px 0px"><h2 style="letter-spacing: 4px">Shubham Tatvamasi</h2><p>' + new Date() + '</p><p>Enter "help" for more information.</p>';
+          this.value = '';
+          return;
         case 'clock':
           var appendDiv = jQuery($('.clock-container')[0].outerHTML);
           appendDiv.attr('style', 'display:inline-block');
@@ -115,9 +119,17 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
         case 'help':
           output('<div class="ls-files">' + CMDS_.join('<br>') + '</div>');
           break;
+        case 'ls':
+          output('<div class="ls-files">' + CMDS_.join('<br>') + '</div>');
+          break;
         case 'name':
           output('Shubham Tatvamasi');
           break;
+        case 'q':
+          window.close();
+          break;
+        case 'r':
+          location.reload();
         case 'reload':
           location.reload();
           break;
