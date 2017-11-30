@@ -1,8 +1,11 @@
 $(function() {
+
+$.getJSON('http://ipinfo.io', function(data){
   
   // Set the command-line prompt to include the user's IP Address
-  //$('.prompt').html('[' + codehelper_ip["IP"] + '@HTML5] # ');
-    $('.prompt').html('[shubham@shubhamtatvamasi.com] # ');
+    $('.prompt').html('[shubham@' + data['ip'] + '] # ');
+
+      });
 
   // Initialize a new terminal object
   var term = new Terminal('#input-line .cmdline', '#container output');
@@ -19,4 +22,6 @@ $(function() {
     r("hour", 30*(d.getHours()%12) + d.getMinutes()/2)
   }, 1000);
   
+
+
 });
