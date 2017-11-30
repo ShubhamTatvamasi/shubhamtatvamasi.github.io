@@ -110,7 +110,7 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
           output( args.join(' ') );
           break;
         case 'exit':
-          close();
+          window.close();
           break;
         case 'help':
           output('<div class="ls-files">' + CMDS_.join('<br>') + '</div>');
