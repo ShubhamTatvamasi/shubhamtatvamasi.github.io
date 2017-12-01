@@ -137,7 +137,7 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
           output(navigator.appVersion);
           break;
         case 'whoami':
-          output('I am Programmer by heart and profession :)');
+          output('I am a Programmer by heart and profession :)');
           break;
         default:
           if (cmd) {
