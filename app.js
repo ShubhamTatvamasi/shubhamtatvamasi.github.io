@@ -1,6 +1,6 @@
 $(function() {
 
-$.getJSON('http://ipinfo.io', function(data){
+$.getJSON('https://ipinfo.io', function(data){
   
   // Set the command-line prompt to include the user's IP Address
     $('.prompt').html('[shubham@' + data['ip'] + '] # ');
