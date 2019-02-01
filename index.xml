@@ -84,8 +84,25 @@ If you think you are the one feel free to contact me anytime you like.</descript
       
       <guid>https://shubhamtatvamasi.com/about/</guid>
       <description>This is my Introduction:
-I am Blockchain Architect and Ethereum open source contributor, I have been working on Blockchain technologies since 2015 onwards. I entered into Blockchain space because I truly believe that this is the future of Internet and I want to make this a reality. My life’s goal is to build a fully decentralized world where everything is transparent and full of trust.
-Some Technologies I play with:</description>
+I am Blockchain Architect and Ethereum open source contributor, I have been working on Blockchain technologies since 2015 onwards. I entered into Blockchain space because I truly believe that this is the future of Internet and I want to make this a reality. My life’s goal is to build a fully decentralized world where everything is transparent and full of trust.</description>
+    </item>
+    
+    <item>
+      <title>Technical</title>
+      <link>https://shubhamtatvamasi.com/technical/</link>
+      <pubDate>Thu, 09 Mar 2017 13:19:25 +0800</pubDate>
+      
+      <guid>https://shubhamtatvamasi.com/technical/</guid>
+      <description>Some Technologies I play with:
+Programming Languages: JavaScript, Python, GoLang, Solidity
+Frameworks: Node.js, Express.js, React, Angular, Django, Flask
+Blockchain: Ethereum, Hyperledger, IPFS, Web3.js, Remix, Truffle
+Databases: MySQL, SQLite, MongoDB
+Linux: Ubuntu, LinuxMint, CentOS
+DevOps: Docker, Kubernetes, Jenkins, Nginx, Apache
+Cloud: AWS, GCP, Azure, Heroku
+AI: Jupyterhub, Jupyter Notebook
+Tools: Github, Gitlab, Jira, Trello</description>
     </item>
     
   </channel>
