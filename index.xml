@@ -101,7 +101,7 @@ Databases: MySQL, SQLite, MongoDB
 Linux: Ubuntu, LinuxMint, CentOS
 DevOps: Docker, Kubernetes, Jenkins, Nginx, Apache
 Cloud: AWS, GCP, Azure, Heroku
-AI: Jupyterhub, Jupyter Notebook
+AI: Kubeflow, Jupyterhub, Jupyter Notebook
 Tools: Github, Gitlab, Jira, Trello</description>
     </item>
     
