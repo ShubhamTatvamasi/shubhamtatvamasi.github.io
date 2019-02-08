@@ -102,7 +102,7 @@ Linux: Ubuntu, LinuxMint, CentOS
 DevOps: Docker, Kubernetes, Jenkins, Nginx, Apache
 Cloud: AWS, GCP, Azure, Heroku
 AI: Kubeflow, Jupyterhub, Jupyter Notebook
-Tools: Github, Gitlab, Jira, Trello</description>
+Tools: Git, Github, Gitlab, Jira, Trello</description>
     </item>
     
   </channel>
