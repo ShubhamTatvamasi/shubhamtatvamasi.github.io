@@ -99,7 +99,7 @@ Frameworks: Node.js, Express.js, React, Angular, Django, Flask
 Blockchain: Ethereum, Hyperledger, IPFS, Web3.js, Remix, Truffle
 Databases: MySQL, SQLite, MongoDB
 Linux: Ubuntu, LinuxMint, CentOS
-DevOps: Docker, Kubernetes, Jenkins, Nginx, Apache
+DevOps: Docker, Kubernetes, OpenStack, Jenkins, Nginx, Apache
 Cloud: AWS, GCP, Azure, Heroku
 AI: Kubeflow, Jupyterhub, Jupyter Notebook
 Tools: Git, Github, Gitlab, Jira, Trello</description>
