@@ -1,0 +1,64 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="404 · Pod not found">
+  <main class="nf">
+    <p class="mono code">Error from server (NotFound)</p>
+    <h1>4<span class="serif grad">0</span>4</h1>
+    <p class="mono msg">
+      pods "<span class="path" id="path">this-page</span>" not found in namespace "shubhamtatvamasi"
+    </p>
+    <a href="/" class="btn mono">kubectl rollout undo → home</a>
+  </main>
+</Base>
+
+<style>
+  .nf {
+    min-height: 100svh;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 20px;
+    padding: 24px 16px;
+    text-align: center;
+    background: radial-gradient(600px 400px at 50% 40%, rgba(139, 123, 255, 0.15), transparent 70%);
+  }
+
+  .code {
+    color: var(--pink);
+    font-size: 13px;
+  }
+
+  h1 {
+    font-size: clamp(120px, 30vw, 300px);
+    letter-spacing: -0.08em;
+    line-height: 0.85;
+  }
+
+  .msg {
+    color: var(--muted);
+    font-size: 14px;
+    max-width: 560px;
+    word-break: break-word;
+  }
+
+  .path {
+    color: var(--lime);
+  }
+
+  .btn {
+    margin-top: 12px;
+    padding: 14px 22px;
+    border-radius: 999px;
+    background: var(--lime);
+    color: #000;
+    font-size: 13px;
+  }
+</style>
+
+<script>
+  const p = document.getElementById('path');
+  const slug = location.pathname.replace(/^\/|\/$/g, '');
+  if (p && slug) p.textContent = slug;
+</script>

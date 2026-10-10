@@ -1,0 +1,124 @@
+---
+const items = [
+  'Kubernetes',
+  'vLLM',
+  'KServe',
+  'llm-d',
+  'Envoy AI Gateway',
+  'LiteLLM',
+  'NVIDIA GPU Operator',
+  'DCGM',
+  'Prometheus',
+  'Grafana',
+  'KEDA',
+  'Flux CD',
+  'Argo CD',
+  'Terraform',
+  'Ansible',
+  'Go',
+  'Helm',
+  'Rook-Ceph',
+  'Gateway API',
+  'WireGuard',
+  'ML-KEM',
+  'ML-DSA',
+  'OpenStack',
+  'Proxmox',
+];
+const half = Math.ceil(items.length / 2);
+const rows = [items.slice(0, half), items.slice(half)];
+---
+
+<div class="marquee" aria-label="Tools I work with">
+  {
+    rows.map((row, r) => (
+      <div class:list={['track', r === 1 && 'reverse']}>
+        {[0, 1].map((dup) => (
+          <ul aria-hidden={dup === 1 ? 'true' : undefined}>
+            {row.map((t, i) => (
+              <li>
+                <span class:list={['chip', `c${(i + r) % 3}`]}>{t}</span>
+                <span class="sep">✦</span>
+              </li>
+            ))}
+          </ul>
+        ))}
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .marquee {
+    position: relative;
+    padding-block: 30px;
+    border-block: 1px solid var(--line);
+    overflow: hidden;
+    display: grid;
+    gap: 14px;
+    mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  }
+
+  .track {
+    display: flex;
+    width: max-content;
+    animation: scroll 50s linear infinite;
+  }
+
+  .track.reverse {
+    animation-direction: reverse;
+    animation-duration: 60s;
+  }
+
+  .marquee:hover .track {
+    animation-play-state: paused;
+  }
+
+  ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+  }
+
+  .chip {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 3.2vw, 38px);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    color: var(--faint);
+    transition: color 0.3s;
+    white-space: nowrap;
+  }
+
+  .chip:hover {
+    color: var(--text);
+  }
+  .c0:hover {
+    color: var(--lime);
+  }
+  .c1:hover {
+    color: var(--cyan);
+  }
+  .c2:hover {
+    color: var(--violet);
+  }
+
+  .sep {
+    margin-inline: 28px;
+    color: var(--line-strong);
+    font-size: 14px;
+  }
+
+  @keyframes scroll {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+</style>

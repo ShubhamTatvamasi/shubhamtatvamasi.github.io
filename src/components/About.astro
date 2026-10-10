@@ -1,0 +1,137 @@
+---
+const manifesto =
+  'Most people meet AI through a chat box. I live one layer down, where tokens become GPU cycles, GPU cycles become heat, and a single misrouted request can idle a rack. My work is making that layer boring in the best way: declarative, observable, self-healing, and secure enough that nobody has to think about it.';
+
+const stats = [
+  { value: '740+', label: 'public repositories, open by default' },
+  { value: '0', label: 'manual deploys tolerated. Git is the source of truth' },
+  { value: '∞', label: 'reconcile loops. Drift is a bug, not a state' },
+];
+---
+
+<section id="about" class="about">
+  <div class="container">
+    <span class="eyebrow" data-reveal>01 · About</span>
+
+    <p class="manifesto" id="manifesto">
+      {manifesto.split(' ').map((word) => <span class="w">{word} </span>)}
+    </p>
+
+    <div class="stats">
+      {
+        stats.map((s, i) => (
+          <div class="stat" data-reveal style={`--d:${i * 0.1}s`}>
+            <span class="value">{s.value}</span>
+            <span class="label">{s.label}</span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    padding-block: clamp(100px, 16vw, 200px) clamp(80px, 12vw, 160px);
+  }
+
+  .manifesto {
+    margin-top: 36px;
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4.4vw, 60px);
+    font-weight: 500;
+    line-height: 1.14;
+    letter-spacing: -0.035em;
+  }
+
+  .w {
+    color: var(--text);
+    opacity: 0.14;
+    transition: opacity 0.4s;
+  }
+
+  .w.on {
+    opacity: 1;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    margin-top: clamp(64px, 9vw, 120px);
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 32px 28px;
+    background: var(--bg);
+  }
+
+  .value {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 6vw, 80px);
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    line-height: 1;
+  }
+
+  .stat:nth-child(1) .value {
+    color: var(--lime);
+  }
+  .stat:nth-child(2) .value {
+    color: var(--cyan);
+  }
+  .stat:nth-child(3) .value {
+    color: var(--violet);
+  }
+
+  .label {
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 260px;
+  }
+
+  @media (max-width: 760px) {
+    .stats {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .w {
+      opacity: 1;
+    }
+  }
+</style>
+
+<script>
+  // Scrub the manifesto in word by word as it scrolls through the viewport.
+  const el = document.getElementById('manifesto')!;
+  const words = Array.from(el.querySelectorAll<HTMLElement>('.w'));
+  let ticking = false;
+  function update() {
+    ticking = false;
+    const r = el.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const progress = Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (r.height + vh * 0.35)));
+    const lit = Math.round(progress * words.length);
+    words.forEach((w, i) => w.classList.toggle('on', i < lit));
+  }
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    },
+    { passive: true },
+  );
+  update();
+</script>

@@ -1,0 +1,198 @@
+---
+const builds = [
+  {
+    name: 'QubeSec',
+    kicker: 'Kubernetes operator · Go',
+    desc: 'Quantum-safe security for Kubernetes. CRDs and controllers that generate, rotate and sign with ML-KEM and ML-DSA, and issue X.509 certificates, so post-quantum crypto becomes a manifest instead of a migration.',
+    tags: ['ML-KEM', 'ML-DSA', 'X.509', 'CRDs'],
+    href: 'https://github.com/QubeSec/QubeSec',
+    accent: 'var(--violet)',
+  },
+  {
+    name: 'LLM Inference Blueprint',
+    kicker: 'Reference architecture',
+    desc: 'Multi-model LLM serving on Kubernetes: LiteLLM for keys and budgets, Envoy AI Gateway for model-aware routing, llm-d for KV-cache-aware endpoint picking, vLLM on GPU node pools, and KEDA scaling on queue depth.',
+    tags: ['vLLM', 'llm-d', 'KServe', 'KEDA'],
+    href: 'https://github.com/ShubhamTatvamasi/llm-d',
+    accent: 'var(--lime)',
+  },
+  {
+    name: 'Flux GitOps Platform',
+    kicker: 'Public repo · GitOps',
+    desc: 'A living, public GitOps tree: Flux CD bootstrap, cluster, infrastructure and app layering, and secret management patterns, all reconciled continuously from Git.',
+    tags: ['Flux CD', 'Kustomize', 'Helm', 'SOPS'],
+    href: 'https://github.com/ShubhamTatvamasi/fluxcd',
+    accent: 'var(--cyan)',
+  },
+  {
+    name: 'Magma Galaxy',
+    kicker: 'Open-source 5G core',
+    desc: 'One-command, Ansible-driven provisioning of the Magma 5G core on private-cloud Kubernetes, the path that took the project beyond a single cloud.',
+    tags: ['Ansible', 'Kubernetes', '5G', 'Helm'],
+    href: 'https://github.com/ShubhamTatvamasi/magma-galaxy',
+    accent: 'var(--pink)',
+  },
+];
+---
+
+<section id="builds" class="builds">
+  <div class="container">
+    <span class="eyebrow" data-reveal>03 · Builds</span>
+    <h2 class="section-title" data-reveal style="--d:.1s">
+      Things I've <span class="serif grad">open-sourced</span>
+    </h2>
+
+    <ul class="list">
+      {
+        builds.map((b, i) => (
+          <li data-reveal style={`--d:${i * 0.06}s; --accent:${b.accent}`}>
+            <a href={b.href} target="_blank" rel="noopener" class="row">
+              <span class="num mono">{String(i + 1).padStart(2, '0')}</span>
+              <div class="main">
+                <span class="kicker mono">{b.kicker}</span>
+                <h3>{b.name}</h3>
+                <p>{b.desc}</p>
+                <div class="tags">
+                  {b.tags.map((t) => (
+                    <span class="mono">{t}</span>
+                  ))}
+                </div>
+              </div>
+              <span class="arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22">
+                  <path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .builds {
+    padding-block: clamp(80px, 12vw, 160px);
+  }
+
+  .list {
+    list-style: none;
+    margin: 56px 0 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  li {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .row {
+    position: relative;
+    display: grid;
+    grid-template-columns: 70px 1fr 56px;
+    gap: 24px;
+    align-items: start;
+    padding: 40px 8px;
+    transition: padding 0.5s var(--ease);
+  }
+
+  .row::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 10%, transparent), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+  }
+
+  .row:hover::before {
+    opacity: 1;
+  }
+
+  .row:hover {
+    padding-left: 22px;
+  }
+
+  .num {
+    font-size: 13px;
+    color: var(--faint);
+    padding-top: 10px;
+  }
+
+  .kicker {
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+  }
+
+  h3 {
+    font-size: clamp(32px, 5vw, 60px);
+    margin-block: 8px 14px;
+    transition: color 0.4s;
+  }
+
+  .row:hover h3 {
+    color: var(--accent);
+  }
+
+  p {
+    max-width: 720px;
+    color: var(--muted);
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+  }
+
+  .tags span {
+    font-size: 11.5px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    color: var(--muted);
+  }
+
+  .arrow {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 1px solid var(--line-strong);
+    transition:
+      background 0.4s,
+      color 0.4s,
+      transform 0.5s var(--ease),
+      border-color 0.4s;
+  }
+
+  .row:hover .arrow {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #000;
+    transform: rotate(45deg);
+  }
+
+  @media (max-width: 680px) {
+    .row {
+      grid-template-columns: 1fr;
+      gap: 6px;
+      padding-block: 32px;
+    }
+    .num {
+      padding: 0;
+    }
+    .arrow {
+      position: absolute;
+      top: 28px;
+      right: 8px;
+      width: 44px;
+      height: 44px;
+    }
+  }
+</style>

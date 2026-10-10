@@ -1,0 +1,681 @@
+---
+const pods = Array.from({ length: 24 });
+const gpus = Array.from({ length: 8 });
+const commits = [
+  { sha: 'a3f9c21', msg: 'feat: add vllm replica pool' },
+  { sha: '7be0d4e', msg: 'chore: bump gpu-operator' },
+  { sha: 'c41a8f0', msg: 'fix: keda queue threshold' },
+  { sha: '19d2e7b', msg: 'feat: llm-d prefix routing' },
+];
+---
+
+<section id="craft" class="craft">
+  <div class="container">
+    <div class="head">
+      <div>
+        <span class="eyebrow" data-reveal>02 · Craft</span>
+        <h2 class="section-title" data-reveal style="--d:.1s">
+          Six layers, <span class="serif grad">one obsession</span>
+        </h2>
+      </div>
+      <p class="intro" data-reveal style="--d:.2s">
+        Making the whole stack, from the GPU die to the API gateway, behave like one calm, observable,
+        self-healing system.
+      </p>
+    </div>
+
+    <div class="bento">
+      <!-- Inference -->
+      <article class="card span-2 inference" data-reveal>
+        <div class="card-top">
+          <span class="idx mono">/01</span>
+          <span class="pill mono"><i class="dot"></i> serving</span>
+        </div>
+        <div class="flow" aria-hidden="true">
+          {
+            ['request', 'gateway', 'scheduler', 'vLLM'].map((s, i) => (
+              <>
+                <div class="hop">
+                  <span class="hop-box mono">{s}</span>
+                </div>
+                {i < 3 && (
+                  <div class="wire">
+                    <span class="tok" style={`--i:${i}`} />
+                    <span class="tok" style={`--i:${i + 0.5}`} />
+                  </div>
+                )}
+              </>
+            ))
+          }
+        </div>
+        <div class="meters mono" aria-hidden="true">
+          <span>tok/s <b id="tps">1,842</b></span>
+          <span>ttft <b id="ttft">84ms</b></span>
+          <span>kv-cache hit <b id="kv">71%</b></span>
+        </div>
+        <h3>Inference platforms</h3>
+        <p>
+          Kubernetes-native model serving with KServe, vLLM and llm-d. Model-aware routing through Envoy AI
+          Gateway, budgets and keys via LiteLLM, and queue-depth autoscaling that adds replicas before it adds
+          GPUs.
+        </p>
+      </article>
+
+      <!-- GPU -->
+      <article class="card gpu" data-reveal style="--d:.08s">
+        <div class="card-top">
+          <span class="idx mono">/02</span>
+          <span class="pill mono">dcgm</span>
+        </div>
+        <div class="bars" aria-hidden="true">
+          {
+            gpus.map((_, i) => (
+              <div class="bar">
+                <span class="fill" />
+                <span class="bar-label mono">{i}</span>
+              </div>
+            ))
+          }
+        </div>
+        <h3>GPU visibility</h3>
+        <p>
+          Telling allocated apart from actually computing. Cross-vendor telemetry that catches idle, starved and
+          oversubscribed accelerators.
+        </p>
+      </article>
+
+      <!-- Kubernetes -->
+      <article class="card k8s" data-reveal>
+        <div class="card-top">
+          <span class="idx mono">/03</span>
+          <span class="pill mono" id="podcount">24/24 ready</span>
+        </div>
+        <div class="pods" aria-hidden="true">{pods.map(() => <span class="pod" />)}</div>
+        <h3>Platform engineering</h3>
+        <p>
+          Controllers, CRDs and operators in Go. Multi-cluster networking, tenant isolation and HA storage that
+          heals itself.
+        </p>
+      </article>
+
+      <!-- GitOps -->
+      <article class="card gitops" data-reveal style="--d:.08s">
+        <div class="card-top">
+          <span class="idx mono">/04</span>
+          <span class="pill mono">flux</span>
+        </div>
+        <ol class="log mono" aria-hidden="true">
+          {
+            commits.map((c) => (
+              <li>
+                <span class="sha">{c.sha}</span>
+                <span class="msg">{c.msg}</span>
+                <span class="ok">✓</span>
+              </li>
+            ))
+          }
+        </ol>
+        <h3>GitOps everything</h3>
+        <p>Declarative reconciliation across fleets of clusters. If it isn't in Git, it doesn't exist.</p>
+      </article>
+
+      <!-- PQC -->
+      <article class="card pqc" data-reveal style="--d:.16s">
+        <div class="card-top">
+          <span class="idx mono">/05</span>
+          <span class="pill mono">ml-kem-768</span>
+        </div>
+        <div class="lattice" aria-hidden="true">
+          <pre class="hex mono" id="hex"></pre>
+        </div>
+        <h3>Quantum-safe security</h3>
+        <p>
+          Post-quantum key exchange, signatures and certificate lifecycles, automated as Kubernetes-native
+          resources.
+        </p>
+      </article>
+
+      <!-- Edge -->
+      <article class="card span-3 edge" data-reveal>
+        <div class="edge-grid">
+          <div>
+            <div class="card-top">
+              <span class="idx mono">/06</span>
+              <span class="pill mono"><i class="dot"></i> wg0 up</span>
+            </div>
+            <h3>Edge &amp; hybrid networks</h3>
+            <p>
+              Encrypted tunnels from devices behind carrier-grade NAT to private and public clouds. Fleets that
+              stay reachable, observable and patched no matter where they live.
+            </p>
+          </div>
+          <svg class="radar" viewBox="0 0 400 200" aria-hidden="true">
+            <defs>
+              <radialGradient id="rg" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#3de0ff" stop-opacity=".35"></stop>
+                <stop offset="100%" stop-color="#3de0ff" stop-opacity="0"></stop>
+              </radialGradient>
+            </defs>
+            <circle cx="200" cy="100" r="34" fill="url(#rg)"></circle>
+            <circle cx="200" cy="100" r="9" fill="#3de0ff"></circle>
+            {
+              [
+                [40, 40],
+                [70, 160],
+                [120, 30],
+                [330, 50],
+                [360, 150],
+                [280, 175],
+                [20, 100],
+                [380, 95],
+                [150, 180],
+              ].map(([x, y], i) => (
+                <g>
+                  <path
+                    class="tunnel"
+                    d={`M${x} ${y} Q ${(x + 200) / 2} ${y < 100 ? y - 20 : y + 20} 200 100`}
+                    style={`--i:${i}`}
+                  />
+                  <circle cx={x} cy={y} r="4" class="device" style={`--i:${i}`} />
+                </g>
+              ))
+            }
+          </svg>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .craft {
+    padding-block: clamp(80px, 12vw, 160px);
+  }
+
+  .head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: end;
+    gap: 24px;
+    margin-bottom: 56px;
+  }
+
+  .intro {
+    max-width: 380px;
+    color: var(--muted);
+  }
+
+  .bento {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .span-2 {
+    grid-column: span 2;
+  }
+  .span-3 {
+    grid-column: span 3;
+  }
+
+  .card {
+    --mx: 50%;
+    --my: 50%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 26px;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background:
+      radial-gradient(500px circle at var(--mx) var(--my), rgba(255, 255, 255, 0.06), transparent 40%),
+      var(--bg-2);
+    overflow: hidden;
+    isolation: isolate;
+    transition: border-color 0.4s;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: radial-gradient(360px circle at var(--mx) var(--my), rgba(198, 255, 61, 0.55), transparent 45%);
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s;
+    pointer-events: none;
+  }
+
+  .card:hover::before {
+    opacity: 1;
+  }
+
+  .card h3 {
+    font-size: clamp(24px, 2.4vw, 30px);
+    margin-top: auto;
+  }
+
+  .card p {
+    color: var(--muted);
+    font-size: 15.5px;
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .idx {
+    font-size: 12px;
+    color: var(--faint);
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 11px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    font-size: 11px;
+    color: var(--muted);
+    font-style: normal;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--lime);
+    box-shadow: 0 0 10px var(--lime);
+  }
+
+  /* Inference flow */
+  .flow {
+    display: flex;
+    align-items: center;
+    margin-block: 28px 8px;
+  }
+
+  .hop-box {
+    display: block;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--line-strong);
+    background: var(--surface);
+    font-size: 12.5px;
+    white-space: nowrap;
+  }
+
+  .hop:last-child .hop-box {
+    border-color: rgba(198, 255, 61, 0.5);
+    color: var(--lime);
+    box-shadow: 0 0 30px -8px rgba(198, 255, 61, 0.5);
+  }
+
+  .wire {
+    position: relative;
+    flex: 1;
+    min-width: 16px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--line-strong), var(--line-strong));
+  }
+
+  .tok {
+    position: absolute;
+    top: -2px;
+    left: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 10px var(--cyan);
+    animation: travel 1.6s linear infinite;
+    animation-delay: calc(var(--i) * 0.53s);
+  }
+
+  @keyframes travel {
+    from {
+      left: 0;
+      opacity: 0;
+    }
+    15% {
+      opacity: 1;
+    }
+    85% {
+      opacity: 1;
+    }
+    to {
+      left: calc(100% - 5px);
+      opacity: 0;
+    }
+  }
+
+  .meters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    font-size: 12px;
+    color: var(--faint);
+    margin-bottom: 18px;
+  }
+
+  .meters b {
+    color: var(--text);
+    font-weight: 500;
+    margin-left: 6px;
+  }
+
+  /* GPU bars */
+  .bars {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 8px;
+    height: 140px;
+    margin-block: 12px 10px;
+  }
+
+  .bar {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-radius: 8px;
+    background: var(--surface);
+    overflow: hidden;
+  }
+
+  .fill {
+    display: block;
+    height: var(--h, 40%);
+    background: linear-gradient(to top, var(--c, var(--lime)), transparent);
+    border-top: 2px solid var(--c, var(--lime));
+    transition:
+      height 1.2s var(--ease),
+      background 0.6s;
+  }
+
+  .bar-label {
+    position: absolute;
+    bottom: 6px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 10px;
+    color: var(--faint);
+  }
+
+  /* Pods */
+  .pods {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 7px;
+    margin-block: 12px 10px;
+  }
+
+  .pod {
+    aspect-ratio: 1;
+    border-radius: 6px;
+    background: rgba(139, 123, 255, 0.85);
+    transition:
+      background 0.5s,
+      transform 0.5s var(--ease);
+  }
+
+  .pod.pending {
+    background: transparent;
+    border: 1px dashed var(--faint);
+    transform: scale(0.8);
+  }
+
+  .pod.new {
+    background: var(--lime);
+  }
+
+  /* GitOps log */
+  .log {
+    list-style: none;
+    margin: 12px 0 10px;
+    padding: 0;
+    display: grid;
+    gap: 8px;
+    font-size: 12px;
+  }
+
+  .log li {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    background: var(--surface);
+    opacity: 0.35;
+    transition: opacity 0.5s;
+  }
+
+  .log li.live {
+    opacity: 1;
+  }
+
+  .sha {
+    color: var(--violet);
+  }
+
+  .msg {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--muted);
+  }
+
+  .ok {
+    color: var(--lime);
+  }
+
+  /* PQC */
+  .lattice {
+    position: relative;
+    height: 150px;
+    margin-block: 12px 10px;
+    border-radius: 14px;
+    overflow: hidden;
+    background-image: radial-gradient(rgba(139, 123, 255, 0.5) 1.2px, transparent 1.4px);
+    background-size: 16px 16px;
+    animation: lattice 12s linear infinite;
+  }
+
+  .lattice::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent 40%, var(--bg-2));
+  }
+
+  @keyframes lattice {
+    to {
+      background-position: 64px 32px;
+    }
+  }
+
+  .hex {
+    margin: 0;
+    padding: 14px;
+    font-size: 11px;
+    line-height: 1.6;
+    color: var(--cyan);
+    opacity: 0.85;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+
+  /* Edge */
+  .edge-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 32px;
+    align-items: center;
+  }
+
+  .edge-grid > div {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .edge h3 {
+    margin-top: 40px;
+  }
+
+  .radar {
+    width: 100%;
+    height: auto;
+  }
+
+  .tunnel {
+    fill: none;
+    stroke: rgba(61, 224, 255, 0.5);
+    stroke-width: 1;
+    stroke-dasharray: 4 6;
+    animation: dash 1.8s linear infinite;
+    animation-delay: calc(var(--i) * -0.2s);
+  }
+
+  @keyframes dash {
+    to {
+      stroke-dashoffset: -20;
+    }
+  }
+
+  .device {
+    fill: var(--bg-2);
+    stroke: var(--lime);
+    stroke-width: 1.5;
+    animation: beat 2.4s ease-in-out infinite;
+    animation-delay: calc(var(--i) * 0.27s);
+  }
+
+  @keyframes beat {
+    50% {
+      fill: var(--lime);
+    }
+  }
+
+  @media (max-width: 960px) {
+    .bento {
+      grid-template-columns: 1fr 1fr;
+    }
+    .span-3 {
+      grid-column: span 2;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .bento {
+      grid-template-columns: 1fr;
+    }
+    .span-2,
+    .span-3 {
+      grid-column: auto;
+    }
+    .edge-grid {
+      grid-template-columns: 1fr;
+    }
+    .hop-box {
+      padding: 7px 8px;
+      font-size: 10.5px;
+      border-radius: 9px;
+    }
+    .wire {
+      min-width: 12px;
+    }
+  }
+</style>
+
+<script>
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Cursor spotlight on cards
+  document.querySelectorAll<HTMLElement>('.craft .card').forEach((card) => {
+    card.addEventListener('pointermove', (e) => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+      card.style.setProperty('--my', `${e.clientY - r.top}px`);
+    });
+  });
+
+  const rand = (a: number, b: number) => a + Math.random() * (b - a);
+
+  // GPU utilisation
+  const fills = document.querySelectorAll<HTMLElement>('.gpu .fill');
+  function gpuTick() {
+    fills.forEach((f) => {
+      const u = Math.random() < 0.18 ? rand(2, 12) : rand(35, 98);
+      f.style.setProperty('--h', `${u}%`);
+      f.style.setProperty('--c', u < 15 ? 'var(--pink)' : u > 90 ? 'var(--cyan)' : 'var(--lime)');
+    });
+  }
+
+  // Inference meters
+  const tps = document.getElementById('tps')!;
+  const ttft = document.getElementById('ttft')!;
+  const kv = document.getElementById('kv')!;
+  function meterTick() {
+    tps.textContent = Math.round(rand(1600, 2400)).toLocaleString('en-US');
+    ttft.textContent = `${Math.round(rand(62, 118))}ms`;
+    kv.textContent = `${Math.round(rand(64, 82))}%`;
+  }
+
+  // Pods: one gets evicted, reconciler brings it back
+  const pods = Array.from(document.querySelectorAll<HTMLElement>('.pod'));
+  const podcount = document.getElementById('podcount')!;
+  function podTick() {
+    const p = pods[(Math.random() * pods.length) | 0];
+    p.classList.add('pending');
+    podcount.textContent = `${pods.length - 1}/${pods.length} ready`;
+    setTimeout(() => {
+      p.classList.remove('pending');
+      p.classList.add('new');
+      podcount.textContent = `${pods.length}/${pods.length} ready`;
+      setTimeout(() => p.classList.remove('new'), 900);
+    }, 1100);
+  }
+
+  // GitOps log
+  const logs = Array.from(document.querySelectorAll<HTMLElement>('.log li'));
+  let li = 0;
+  function logTick() {
+    logs.forEach((l, i) => l.classList.toggle('live', i <= li));
+    li = (li + 1) % (logs.length + 1);
+  }
+
+  // PQC hex
+  const hex = document.getElementById('hex')!;
+  const hx = () =>
+    Array.from({ length: 168 }, () => '0123456789abcdef'[(Math.random() * 16) | 0])
+      .join('')
+      .replace(/(.{4})/g, '$1 ');
+  function hexTick() {
+    hex.textContent = hx();
+  }
+
+  gpuTick();
+  meterTick();
+  logTick();
+  hexTick();
+  if (!reduce) {
+    setInterval(gpuTick, 1800);
+    setInterval(meterTick, 1200);
+    setInterval(podTick, 2600);
+    setInterval(logTick, 1400);
+    setInterval(hexTick, 900);
+  }
+</script>

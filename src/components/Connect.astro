@@ -1,0 +1,183 @@
+---
+const links = [
+  { label: 'GitHub', handle: '@ShubhamTatvamasi', href: 'https://github.com/ShubhamTatvamasi' },
+  { label: 'LinkedIn', handle: 'in/shubhamtatvamasi', href: 'https://www.linkedin.com/in/shubhamtatvamasi' },
+  { label: 'QubeSec', handle: 'github.com/QubeSec', href: 'https://github.com/QubeSec' },
+];
+const year = new Date().getFullYear();
+---
+
+<footer id="connect" class="connect">
+  <div class="aurora" aria-hidden="true"></div>
+  <div class="container">
+    <span class="eyebrow" data-reveal>06 · Connect</span>
+    <h2 class="cta" data-reveal style="--d:.1s">
+      Let's make it <span class="serif grad">scale.</span>
+    </h2>
+    <p class="sub" data-reveal style="--d:.2s">
+      Inference at scale, GPUs that never sit idle, clusters that heal themselves: if that's your kind of
+      problem, it's mine too.
+    </p>
+
+    <ul class="links">
+      {
+        links.map((l, i) => (
+          <li data-reveal style={`--d:${0.25 + i * 0.06}s`}>
+            <a href={l.href} target="_blank" rel="noopener">
+              <span class="label">{l.label}</span>
+              <span class="handle mono">{l.handle}</span>
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                <path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="wordmark" aria-hidden="true">tatvamasi</div>
+
+    <div class="base mono">
+      <span>© {year} Shubham Tatvamasi</span>
+      <span>Built with Astro · shipped by GitOps</span>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .connect {
+    position: relative;
+    padding-top: clamp(100px, 14vw, 180px);
+    overflow: hidden;
+    border-top: 1px solid var(--line);
+  }
+
+  .aurora {
+    position: absolute;
+    inset: auto -20% -40% -20%;
+    height: 90%;
+    background:
+      radial-gradient(40% 60% at 25% 70%, rgba(198, 255, 61, 0.18), transparent 70%),
+      radial-gradient(40% 60% at 55% 80%, rgba(61, 224, 255, 0.16), transparent 70%),
+      radial-gradient(40% 60% at 80% 70%, rgba(139, 123, 255, 0.24), transparent 70%);
+    filter: blur(50px);
+    pointer-events: none;
+    animation: sway 16s ease-in-out infinite alternate;
+  }
+
+  @keyframes sway {
+    to {
+      transform: translateX(6%) scaleY(1.15);
+    }
+  }
+
+  .container {
+    position: relative;
+  }
+
+  .cta {
+    margin-top: 20px;
+    font-size: clamp(56px, 12vw, 176px);
+    line-height: 0.9;
+    letter-spacing: -0.06em;
+  }
+
+  .sub {
+    margin-top: 28px;
+    max-width: 520px;
+    color: var(--muted);
+    font-size: clamp(17px, 1.6vw, 20px);
+  }
+
+  .links {
+    list-style: none;
+    margin: 64px 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  .links a {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4px 12px;
+    padding: 22px 24px;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: rgba(12, 14, 19, 0.6);
+    backdrop-filter: blur(12px);
+    transition:
+      border-color 0.4s,
+      transform 0.5s var(--ease),
+      background 0.4s;
+  }
+
+  .links a:hover {
+    border-color: var(--lime);
+    transform: translateY(-4px);
+    background: rgba(198, 255, 61, 0.06);
+  }
+
+  .label {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .handle {
+    grid-row: 2;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .links svg {
+    grid-row: span 2;
+    align-self: center;
+    transition: transform 0.4s var(--ease);
+  }
+
+  .links a:hover svg {
+    transform: translate(3px, -3px);
+    color: var(--lime);
+  }
+
+  .wordmark {
+    margin-top: clamp(80px, 12vw, 140px);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(64px, 19.5vw, 272px);
+    line-height: 0.78;
+    letter-spacing: -0.07em;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  .base {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px 24px;
+    padding-block: 28px 36px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    color: var(--faint);
+  }
+
+  .base a:hover {
+    color: var(--lime);
+  }
+
+  @media (max-width: 760px) {
+    .links {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
