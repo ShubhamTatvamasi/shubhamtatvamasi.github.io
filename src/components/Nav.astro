@@ -10,7 +10,7 @@ const links = [
 <header class="nav" id="nav">
   <div class="nav-inner">
     <a href="#top" class="logo" aria-label="Back to top">
-      <span class="logo-mark">st</span>
+      <span class="logo-mark">st<span class="logo-dot"></span></span>
     </a>
     <nav aria-label="Primary">
       <ul>
@@ -68,6 +68,16 @@ const links = [
     letter-spacing: -0.04em;
   }
 
+
+  /* Matches the favicon: a violet full stop on the baseline after "st". */
+  .logo-dot {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    margin-left: 1px;
+    border-radius: 50%;
+    background: var(--violet);
+  }
 
   ul {
     display: flex;
