@@ -2,7 +2,7 @@
   <div class="container">
     <div class="head">
       <div>
-        <span class="eyebrow" data-reveal>05 · Shell</span>
+        <span class="eyebrow" data-reveal>04 · Shell</span>
         <h2 class="section-title" data-reveal style="--d:.1s">
           <span class="mono prompt-mark">&gt;_</span> Talk to <span class="serif grad">the cluster</span>
         </h2>
@@ -231,7 +231,6 @@
         `  ${pad('kubectl get pods', 22)}what's running in my head`,
         `  ${pad('nvidia-smi', 22)}accelerator status`,
         `  ${pad('cat principles.md', 22)}how I build`,
-        `  ${pad('ls builds/', 22)}open-source work`,
         `  ${pad('git log --oneline', 22)}recent obsessions`,
         `  ${pad('neofetch', 22)}system info`,
         `  ${pad('github | linkedin', 22)}find me elsewhere`,
@@ -247,7 +246,6 @@
         `<span class="t-dim">Kind:</span>         Engineer`,
         `<span class="t-dim">Labels:</span>       focus=ai-infrastructure`,
         `              craft=kubernetes,gpus,gitops,pqc`,
-        `              mode=open-source`,
         `<span class="t-dim">Status:</span>       <span class="t-lime">Running</span>`,
         `<span class="t-dim">Restarts:</span>     0 (coffee-powered)`,
         `<span class="t-dim">Resources:</span>`,
@@ -265,7 +263,6 @@
         `${pad('llm-d-epp-5d7b9-qq8sl', 34)}${pad('1/1', 8)}<span class="t-lime">${pad('Running', 12)}</span>4d`,
         `${pad('envoy-ai-gateway-6f4c-mn2', 34)}${pad('1/1', 8)}<span class="t-lime">${pad('Running', 12)}</span>9d`,
         `${pad('dcgm-exporter-k8x2z', 34)}${pad('1/1', 8)}<span class="t-lime">${pad('Running', 12)}</span>21d`,
-        `${pad('qubesec-controller-0', 34)}${pad('1/1', 8)}<span class="t-lime">${pad('Running', 12)}</span>63d`,
         `${pad('flux-source-controller-0', 34)}${pad('1/1', 8)}<span class="t-lime">${pad('Running', 12)}</span>∞`,
         `${pad('weekend-plans-0', 34)}${pad('0/1', 8)}<span class="t-pink">${pad('Pending', 12)}</span>3y`,
       ].join('\n'),
@@ -295,14 +292,6 @@
         '3. Scale the cheap layer first.',
         '4. Secure for the next decade.',
         '5. Open by default.',
-      ].join('\n'),
-
-    'ls builds/': () =>
-      [
-        '<a href="https://github.com/QubeSec/QubeSec" target="_blank" rel="noopener">qubesec/</a>           quantum-safe kubernetes operator',
-        '<a href="https://github.com/ShubhamTatvamasi/llm-d" target="_blank" rel="noopener">llm-inference/</a>     multi-model serving blueprint',
-        '<a href="https://github.com/ShubhamTatvamasi/fluxcd" target="_blank" rel="noopener">fluxcd/</a>            gitops platform, reconciled from git',
-        '<a href="https://github.com/ShubhamTatvamasi/magma-galaxy" target="_blank" rel="noopener">magma-galaxy/</a>      open-source 5G core, one command',
       ].join('\n'),
 
     'git log --oneline': () =>
@@ -337,7 +326,7 @@
       return 'opening <a href="https://www.linkedin.com/in/shubhamtatvamasi" target="_blank" rel="noopener">linkedin.com/in/shubhamtatvamasi</a> …';
     },
 
-    ls: () => 'builds/  principles.md  ideas.txt  <span class="t-dim">.weekend-plans (empty)</span>',
+    ls: () => 'principles.md  ideas.txt  <span class="t-dim">.weekend-plans (empty)</span>',
     'cat ideas.txt': () => 'scale replicas before nodes. cache before compute. route before you buy.',
     pwd: () => '/home/shubham/clusters/everywhere',
     date: () => new Date().toString(),
