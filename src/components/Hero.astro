@@ -336,9 +336,13 @@ const words = ['GPUs', 'tokens', 'clusters', 'packets', 'models', 'keys'];
   const LINK = 150;
 
   function resize() {
+    const nw = canvas.clientWidth;
+    const nh = canvas.clientHeight;
+    // Mobile browsers fire resize when the address bar shows/hides; don't reshuffle the mesh for that.
+    if (nw === w && Math.abs(nh - h) < 120) return;
     dpr = Math.min(window.devicePixelRatio || 1, 2);
-    w = canvas.clientWidth;
-    h = canvas.clientHeight;
+    w = nw;
+    h = nh;
     canvas.width = w * dpr;
     canvas.height = h * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -356,6 +360,7 @@ const words = ['GPUs', 'tokens', 'clusters', 'packets', 'models', 'keys'];
       };
     });
     packets = [];
+    if (reduce) requestAnimationFrame(frame);
   }
 
   function spawnPacket() {
@@ -464,6 +469,8 @@ const words = ['GPUs', 'tokens', 'clusters', 'packets', 'models', 'keys'];
   }).observe(canvas);
 
   window.addEventListener('pointermove', (e) => {
+    // Touch has no hover; a lingering touch point would pull the whole mesh into one clump.
+    if (e.pointerType !== 'mouse') return;
     const rect = canvas.getBoundingClientRect();
     mouse.x = e.clientX - rect.left;
     mouse.y = e.clientY - rect.top;
@@ -473,5 +480,5 @@ const words = ['GPUs', 'tokens', 'clusters', 'packets', 'models', 'keys'];
   window.addEventListener('resize', resize);
 
   resize();
-  requestAnimationFrame(frame);
+  if (!reduce) requestAnimationFrame(frame);
 </script>
