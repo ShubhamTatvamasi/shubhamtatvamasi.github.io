@@ -55,9 +55,9 @@ const commits = [
         </div>
         <h3>Inference platforms</h3>
         <p>
-          Kubernetes-native model serving with KServe, vLLM and llm-d. Model-aware routing through Envoy AI
-          Gateway, budgets and keys via LiteLLM, and queue-depth autoscaling that adds replicas before it adds
-          GPUs.
+          One control plane for models served through KServe, NVIDIA Dynamo, NIM, vLLM and SGLang.
+          Model-aware routing through Envoy AI Gateway and llm-d, budgets and keys via LiteLLM, GuideLLM
+          benchmarks, and autoscaling that adds replicas before it adds GPUs.
         </p>
       </article>
 
@@ -77,10 +77,10 @@ const commits = [
             ))
           }
         </div>
-        <h3>GPU visibility</h3>
+        <h3>GPU sharing &amp; visibility</h3>
         <p>
-          Telling allocated apart from actually computing. Cross-vendor telemetry that catches idle, starved and
-          oversubscribed accelerators.
+          Telling allocated apart from actually computing. DRA with MIG, MPS and time-slicing, Kueue and KAI
+          queues, and NVIDIA and AMD telemetry that catches idle, faulty and oversubscribed GPUs.
         </p>
       </article>
 
@@ -116,7 +116,7 @@ const commits = [
           }
         </ol>
         <h3>GitOps everything</h3>
-        <p>Declarative reconciliation across fleets of clusters. If it isn't in Git, it doesn't exist.</p>
+        <p>Flux CD reconciling 80+ clusters. If it isn't in Git, it doesn't exist.</p>
       </article>
 
       <!-- PQC -->
@@ -145,8 +145,8 @@ const commits = [
             </div>
             <h3>Edge &amp; hybrid networks</h3>
             <p>
-              Encrypted tunnels from devices behind carrier-grade NAT to private and public clouds. Fleets that
-              stay reachable, observable and patched no matter where they live.
+              Encrypted tunnels from 900+ devices behind carrier-grade NAT to private and public clouds. Fleets
+              that stay reachable, observable and patched no matter where they live.
             </p>
           </div>
           <svg class="radar" viewBox="0 0 400 200" aria-hidden="true">

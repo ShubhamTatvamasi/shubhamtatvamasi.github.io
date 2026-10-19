@@ -1,0 +1,289 @@
+---
+const roles = [
+  {
+    when: 'Mar 2026 — Now',
+    role: 'Senior DevOps Engineer',
+    org: 'Portainer.io',
+    current: true,
+    body: 'Architecting the GPU & AI module for Portainer Enterprise: cross-vendor GPU observability, Kubernetes DRA sharing with MIG, MPS and time-slicing, Kueue and KAI Scheduler queues, and one control plane for models served through KServe, NVIDIA Dynamo, NIM, vLLM and SGLang.',
+    tags: ['14 engines auto-detected', 'GPU-hour chargeback', 'GuideLLM benchmarks', 'Flux CD on 80+ clusters'],
+  },
+  {
+    when: 'Oct 2024 — Mar 2026',
+    role: 'Principal Consultant',
+    org: 'StatusNeo',
+    body: 'End-to-end AWS architecture for an AI startup’s SageMaker platform, Spot migration that cut compute cost by ~30%, and a multi-cluster EKS platform on Gateway API and VPC Lattice.',
+    tags: ['Best Performance Award 2025'],
+  },
+  {
+    when: 'Dec 2023 — Sep 2024',
+    role: 'Solutions Architect',
+    org: 'Stealth Startup',
+    body: 'Post-quantum encrypted connectivity for 900+ field-deployed edge devices in a government OpenStack datacenter, with WireGuard and FRP tunnels through carrier-grade NAT. Created QubeSec along the way.',
+    tags: ['ML-KEM / ML-DSA', '45% lower latency'],
+  },
+  {
+    when: 'Mar 2022 — Feb 2024',
+    role: 'Technical Steering Committee',
+    org: 'Magma · open-source 5G core',
+    body: 'Earned a TSC seat through contributions alone, and designed Magma’s first private-cloud deployment path, now part of the official install.',
+    tags: [],
+  },
+  {
+    when: 'Aug 2023 — Nov 2023',
+    role: 'Developer Relations',
+    org: 'AccuKnox',
+    body: 'Founded the Cloud Native Security India community under CNCF and tripled contributor participation.',
+    tags: [],
+  },
+  {
+    when: 'Dec 2021 — Dec 2022',
+    role: 'Technical Lead',
+    org: 'ACL Digital',
+    body: 'Led technical direction and release automation for Kubernetes-based telecom platforms in production.',
+    tags: [],
+  },
+  {
+    when: 'Sep 2020 — Nov 2021',
+    role: 'Research Associate',
+    org: 'University of Delhi',
+    body: 'Go controllers for on-demand academic microsites, a hybrid OpenStack, AWS, Azure and Proxmox migration, and 200+ websites behind a single public IP.',
+    tags: [],
+  },
+  {
+    when: 'Sep 2018 — Aug 2020',
+    role: 'DevOps Engineer',
+    org: 'bitgrit',
+    body: 'A multi-tenant ML competition platform on Kubernetes, Istio and Kubeflow, built to run untrusted customer workloads in isolation.',
+    tags: [],
+  },
+  {
+    when: '2015 — 2018',
+    role: 'Full stack & blockchain',
+    org: 'Web Shuttle · Quanonblocks',
+    body: 'Where it started: React and Node on AWS, then smart contracts, Hyperledger and Raspberry Pi mining clusters.',
+    tags: [],
+  },
+];
+
+const certs = [
+  'Certified Kubernetes Administrator',
+  'Certified Kubernetes Security Specialist',
+  'AWS Solutions Architect · Associate',
+];
+---
+
+<section id="experience" class="experience">
+  <div class="container">
+    <div class="head">
+      <div>
+        <span class="eyebrow" data-reveal>03 · Experience</span>
+        <h2 class="section-title" data-reveal style="--d:.1s">
+          Twelve years, <span class="serif grad">one direction</span>
+        </h2>
+      </div>
+      <p class="intro" data-reveal style="--d:.2s">
+        From web apps to edge fleets to GPU fleets. The workloads changed; the job of making them run calmly
+        didn't.
+      </p>
+    </div>
+
+    <ol class="timeline">
+      {
+        roles.map((r) => (
+          <li class:list={['role', r.current && 'current']} data-reveal>
+            <span class="when mono">
+              {r.current && <i class="live" aria-hidden="true" />}
+              {r.when}
+            </span>
+            <div class="who">
+              <h3>{r.role}</h3>
+              <span class="org">{r.org}</span>
+            </div>
+            <div class="what">
+              <p>{r.body}</p>
+              {r.tags.length > 0 && (
+                <ul class="tags mono">
+                  {r.tags.map((t) => (
+                    <li>{t}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+
+    <ul class="certs" data-reveal>
+      {
+        certs.map((c) => (
+          <li>
+            <span class="tick mono" aria-hidden="true">✓</span>
+            {c}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .experience {
+    padding-block: clamp(80px, 12vw, 160px);
+  }
+
+  .head {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+    align-items: end;
+    margin-bottom: clamp(48px, 7vw, 88px);
+  }
+
+  .intro {
+    color: var(--muted);
+    max-width: 420px;
+    justify-self: end;
+  }
+
+  .timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .role {
+    display: grid;
+    grid-template-columns: 200px 1fr 1.5fr;
+    gap: clamp(16px, 3vw, 40px);
+    padding-block: clamp(26px, 3vw, 36px);
+    border-bottom: 1px solid var(--line);
+    transition: background 0.4s;
+  }
+
+  .role:hover {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.025), transparent 80%);
+  }
+
+  .when {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--faint);
+    padding-top: 6px;
+  }
+
+  .current .when {
+    color: var(--lime);
+  }
+
+  .live {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--lime);
+    box-shadow: 0 0 0 0 rgba(198, 255, 61, 0.6);
+    animation: live 2s infinite;
+    flex: none;
+  }
+
+  @keyframes live {
+    70% {
+      box-shadow: 0 0 0 8px rgba(198, 255, 61, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(198, 255, 61, 0);
+    }
+  }
+
+  h3 {
+    font-size: clamp(20px, 2vw, 26px);
+  }
+
+  .org {
+    display: block;
+    margin-top: 8px;
+    color: var(--cyan);
+    font-size: 15px;
+  }
+
+  .what p {
+    color: var(--muted);
+  }
+
+  .current .what p {
+    color: var(--text);
+  }
+
+  .tags {
+    list-style: none;
+    margin: 16px 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tags li {
+    font-size: 12px;
+    padding: 5px 11px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    color: var(--muted);
+  }
+
+  .current .tags li {
+    border-color: rgba(198, 255, 61, 0.35);
+    color: var(--lime);
+  }
+
+  .certs {
+    list-style: none;
+    margin: clamp(40px, 5vw, 64px) 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .certs li {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    font-size: 15px;
+  }
+
+  .tick {
+    color: var(--violet);
+  }
+
+  @media (max-width: 960px) {
+    .role {
+      grid-template-columns: 1fr 1.4fr;
+    }
+    .when {
+      grid-column: 1 / -1;
+      padding-top: 0;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .head {
+      grid-template-columns: 1fr;
+    }
+    .intro {
+      justify-self: start;
+    }
+    .role {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+  }
+</style>

@@ -2,7 +2,7 @@
   <div class="container">
     <div class="head">
       <div>
-        <span class="eyebrow" data-reveal>04 · Shell</span>
+        <span class="eyebrow" data-reveal>05 · Shell</span>
         <h2 class="section-title" data-reveal style="--d:.1s">
           <span class="mono prompt-mark">&gt;_</span> Talk to <span class="serif grad">the cluster</span>
         </h2>
@@ -229,6 +229,8 @@
         `  ${pad('whoami', 22)}who's on the other side`,
         `  ${pad('kubectl describe me', 22)}the full spec`,
         `  ${pad('kubectl get pods', 22)}what's running in my head`,
+        `  ${pad('history', 22)}where I've worked`,
+        `  ${pad('kubectl get certs', 22)}certifications`,
         `  ${pad('nvidia-smi', 22)}accelerator status`,
         `  ${pad('cat principles.md', 22)}how I build`,
         `  ${pad('git log --oneline', 22)}recent obsessions`,
@@ -238,14 +240,16 @@
       ].join('\n'),
 
     whoami: () =>
-      '<span class="t-lime">shubham tatvamasi</span>\nAI infrastructure engineer. I make GPUs, models and clusters behave like one calm system.',
+      '<span class="t-lime">shubham tatvamasi</span>\nAI infrastructure engineer at Portainer. I make GPUs, models and clusters behave like one calm system.',
 
     'kubectl describe me': () =>
       [
         `<span class="t-dim">Name:</span>         shubham-tatvamasi`,
         `<span class="t-dim">Kind:</span>         Engineer`,
+        `<span class="t-dim">Namespace:</span>    portainer-io`,
         `<span class="t-dim">Labels:</span>       focus=ai-infrastructure`,
-        `              craft=kubernetes,gpus,gitops,pqc`,
+        `              craft=kubernetes,gpus,llm-serving,gitops,pqc`,
+        `              experience=12y+`,
         `<span class="t-dim">Status:</span>       <span class="t-lime">Running</span>`,
         `<span class="t-dim">Restarts:</span>     0 (coffee-powered)`,
         `<span class="t-dim">Resources:</span>`,
@@ -284,6 +288,28 @@
       ].join('\n');
     },
 
+    history: () =>
+      [
+        `<span class="t-dim">  ${pad('WHEN', 12)}${pad('ROLE', 30)}WHERE</span>`,
+        `  <span class="t-lime">${pad('2026-now', 12)}</span>${pad('Senior DevOps Engineer', 30)}Portainer.io`,
+        `  ${pad('2024-2026', 12)}${pad('Principal Consultant', 30)}StatusNeo`,
+        `  ${pad('2023-2024', 12)}${pad('Solutions Architect', 30)}Stealth Startup`,
+        `  ${pad('2022-2024', 12)}${pad('TSC Member', 30)}Magma 5G core`,
+        `  ${pad('2023', 12)}${pad('Developer Relations', 30)}AccuKnox`,
+        `  ${pad('2021-2022', 12)}${pad('Technical Lead', 30)}ACL Digital`,
+        `  ${pad('2020-2021', 12)}${pad('Research Associate', 30)}University of Delhi`,
+        `  ${pad('2018-2020', 12)}${pad('DevOps Engineer', 30)}bitgrit`,
+        `  ${pad('2015-2018', 12)}${pad('Full stack, blockchain', 30)}Web Shuttle, Quanonblocks`,
+      ].join('\n'),
+
+    'kubectl get certs': () =>
+      [
+        `<span class="t-dim">${pad('NAME', 46)}READY</span>`,
+        `${pad('certified-kubernetes-administrator', 46)}<span class="t-lime">True</span>`,
+        `${pad('certified-kubernetes-security-specialist', 46)}<span class="t-lime">True</span>`,
+        `${pad('aws-solutions-architect-associate', 46)}<span class="t-lime">True</span>`,
+      ].join('\n'),
+
     'cat principles.md': () =>
       [
         '<span class="t-violet"># principles</span>',
@@ -296,6 +322,7 @@
 
     'git log --oneline': () =>
       [
+        '<span class="t-violet">f3a2b8d</span> feat: dra gpu sharing with mig, mps and time-slicing',
         '<span class="t-violet">e1f0a9c</span> feat: kv-cache-aware routing for every model',
         '<span class="t-violet">b72d3e4</span> feat: gpu idle detection across vendors',
         '<span class="t-violet">9a4c1f2</span> feat: post-quantum certs as a CRD',

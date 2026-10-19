@@ -1,5 +1,6 @@
 ---
 const links = [
+  { label: 'Email', handle: 'shubhamtatvamasi@gmail.com', href: 'mailto:shubhamtatvamasi@gmail.com' },
   { label: 'GitHub', handle: '@ShubhamTatvamasi', href: 'https://github.com/ShubhamTatvamasi' },
   { label: 'LinkedIn', handle: 'in/shubhamtatvamasi', href: 'https://www.linkedin.com/in/shubhamtatvamasi' },
 ];
@@ -9,7 +10,7 @@ const year = new Date().getFullYear();
 <footer id="connect" class="connect">
   <div class="aurora" aria-hidden="true"></div>
   <div class="container">
-    <span class="eyebrow" data-reveal>05 · Connect</span>
+    <span class="eyebrow" data-reveal>06 · Connect</span>
     <h2 class="cta" data-reveal style="--d:.1s">
       Let's make it <span class="serif grad">scale.</span>
     </h2>
@@ -22,7 +23,7 @@ const year = new Date().getFullYear();
       {
         links.map((l, i) => (
           <li data-reveal style={`--d:${0.25 + i * 0.06}s`}>
-            <a href={l.href} target="_blank" rel="noopener">
+            <a href={l.href} target={l.href.startsWith('mailto:') ? undefined : '_blank'} rel="noopener">
               <span class="label">{l.label}</span>
               <span class="handle mono">{l.handle}</span>
               <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
@@ -93,7 +94,7 @@ const year = new Date().getFullYear();
     margin: 64px 0 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 14px;
   }
 
@@ -127,6 +128,7 @@ const year = new Date().getFullYear();
 
   .handle {
     grid-row: 2;
+    overflow-wrap: anywhere;
     font-size: 12px;
     color: var(--muted);
   }
@@ -171,6 +173,12 @@ const year = new Date().getFullYear();
 
   .base a:hover {
     color: var(--lime);
+  }
+
+  @media (max-width: 960px) {
+    .links {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   @media (max-width: 760px) {
