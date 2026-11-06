@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://shubhamtatvamasi.com/sitemap-index.xml
+Sitemap: https://shubhamtatvamasi.com/llm-inference/sitemap.xml
