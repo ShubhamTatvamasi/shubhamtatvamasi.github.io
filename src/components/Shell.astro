@@ -229,6 +229,7 @@
         `  ${pad('whoami', 22)}who's on the other side`,
         `  ${pad('kubectl describe me', 22)}the full spec`,
         `  ${pad('kubectl get pods', 22)}what's running in my head`,
+        `  ${pad('kubectl get skills', 22)}the stack, by layer`,
         `  ${pad('history', 22)}where I've worked`,
         `  ${pad('kubectl get certs', 22)}certifications`,
         `  ${pad('nvidia-smi', 22)}accelerator status`,
@@ -248,7 +249,7 @@
         `<span class="t-dim">Kind:</span>         Engineer`,
         `<span class="t-dim">Namespace:</span>    portainer-io`,
         `<span class="t-dim">Labels:</span>       focus=ai-infrastructure`,
-        `              craft=kubernetes,gpus,llm-serving,gitops,pqc`,
+        `              craft=kubernetes,gpus,llm-serving,gateways,finops,gitops,pqc`,
         `              experience=12y+`,
         `<span class="t-dim">Status:</span>       <span class="t-lime">Running</span>`,
         `<span class="t-dim">Restarts:</span>     0 (coffee-powered)`,
@@ -301,6 +302,20 @@
         `  ${pad('2018-2020', 12)}${pad('DevOps Engineer', 30)}bitgrit`,
         `  ${pad('2015-2018', 12)}${pad('Full stack, blockchain', 30)}Web Shuttle, Quanonblocks`,
       ].join('\n'),
+
+    'kubectl get skills': () =>
+      [
+        ['inference-engines', 'vLLM, SGLang, TensorRT-LLM, Triton, TGI, llama.cpp, LMDeploy, Ollama'],
+        ['model-serving', 'KServe, NVIDIA Dynamo, NVIDIA NIM, llm-d, LeaderWorkerSet, KAITO, KubeAI, Ray Serve'],
+        ['gateways-benchmarks', 'Envoy AI Gateway, Inference Extension, kgateway, LiteLLM, GuideLLM, AIPerf'],
+        ['gpu-scheduling', 'DRA, MIG, MPS, time-slicing, fractional GPUs, Kueue, KAI Scheduler'],
+        ['gpu-observability', 'GPU Operator (NVIDIA, AMD), DCGM, Prometheus, Grafana, KEDA, FinOps'],
+        ['platform', 'Kubernetes, Go, React/TypeScript, controllers/CRDs, Helm, Rook-Ceph'],
+        ['cloud-gitops', 'AWS, SageMaker, Azure, GCP, OpenStack, Flux CD, Argo CD, Terraform, Ansible'],
+        ['security-network', 'Gateway API, RBAC/OIDC, multi-tenancy, WireGuard, post-quantum crypto'],
+      ]
+        .map(([k, v]) => `<span class="t-lime">${pad(k, 22)}</span>${v}`)
+        .join('\n'),
 
     'kubectl get certs': () =>
       [
@@ -389,7 +404,7 @@
       else if (lower.startsWith('echo ')) {
         fn = commands.echo;
         args = cmd.split(' ').slice(1);
-      } else if (lower.startsWith('kubectl')) fn = () => 'try <span class="t-lime">kubectl get pods</span> or <span class="t-lime">kubectl describe me</span>';
+      } else if (lower.startsWith('kubectl')) fn = () => 'try <span class="t-lime">kubectl get skills</span>, <span class="t-lime">kubectl get pods</span> or <span class="t-lime">kubectl describe me</span>';
       else if (lower === 'cd' || lower.startsWith('cd ')) fn = () => 'you are already exactly where you need to be.';
     }
     print(cmd, fn ? fn(args) : `<span class="t-pink">command not found:</span> ${esc(cmd)}. type <span class="t-lime">help</span>`);

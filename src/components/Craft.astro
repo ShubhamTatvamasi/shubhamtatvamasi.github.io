@@ -55,9 +55,11 @@ const commits = [
         </div>
         <h3>Inference platforms</h3>
         <p>
-          One control plane for models served through KServe, NVIDIA Dynamo, NIM, vLLM and SGLang.
-          Model-aware routing through Envoy AI Gateway and llm-d, budgets and keys via LiteLLM, GuideLLM
-          benchmarks, and autoscaling that adds replicas before it adds GPUs.
+          One control plane for models served through KServe, NVIDIA Dynamo, NIM, llm-d and Ray Serve, on
+          engines from vLLM and SGLang to TensorRT-LLM, Triton and llama.cpp. Model-aware routing through
+          Envoy AI Gateway and the Gateway API Inference Extension, keys and budgets via LiteLLM, GuideLLM
+          and AIPerf benchmarks against TTFT and inter-token SLOs, and autoscaling that adds replicas
+          before it adds GPUs.
         </p>
       </article>
 
@@ -79,8 +81,9 @@ const commits = [
         </div>
         <h3>GPU sharing &amp; visibility</h3>
         <p>
-          Telling allocated apart from actually computing. DRA with MIG, MPS and time-slicing, Kueue and KAI
-          queues, and NVIDIA and AMD telemetry that catches idle, faulty and oversubscribed GPUs.
+          Telling allocated apart from actually computing. DRA with MIG, MPS, time-slicing and fractional
+          GPUs, Kueue and KAI queues and quotas, NVIDIA and AMD telemetry that catches idle, faulty (XID,
+          ECC) and oversubscribed GPUs, and chargeback that puts a price on every GPU-hour.
         </p>
       </article>
 
@@ -93,7 +96,8 @@ const commits = [
         <div class="pods" aria-hidden="true">{pods.map(() => <span class="pod" />)}</div>
         <h3>Platform engineering</h3>
         <p>
-          Controllers, CRDs and operators in Go. Multi-cluster networking, tenant isolation and HA storage that
+          Controllers, CRDs and operators in Go, product UI in React and TypeScript, Helm for everything in
+          between. EKS, AKS and RKE2, multi-tenant isolation with RBAC and OIDC, and Rook-Ceph storage that
           heals itself.
         </p>
       </article>
@@ -116,7 +120,10 @@ const commits = [
           }
         </ol>
         <h3>GitOps everything</h3>
-        <p>Flux CD reconciling 80+ clusters. If it isn't in Git, it doesn't exist.</p>
+        <p>
+          Flux CD reconciling 80+ clusters, with Argo CD, GitHub Actions, Terraform and Ansible across AWS,
+          Azure, GCP and OpenStack. If it isn't in Git, it doesn't exist.
+        </p>
       </article>
 
       <!-- PQC -->
@@ -130,8 +137,8 @@ const commits = [
         </div>
         <h3>Quantum-safe security</h3>
         <p>
-          Post-quantum key exchange, signatures and certificate lifecycles, automated as Kubernetes-native
-          resources.
+          ML-KEM key exchange, ML-DSA signatures and X.509 certificate lifecycles, automated as
+          Kubernetes-native resources.
         </p>
       </article>
 
@@ -145,8 +152,9 @@ const commits = [
             </div>
             <h3>Edge &amp; hybrid networks</h3>
             <p>
-              Encrypted tunnels from 900+ devices behind carrier-grade NAT to private and public clouds. Fleets
-              that stay reachable, observable and patched no matter where they live.
+              WireGuard tunnels from 900+ devices behind carrier-grade NAT to OpenStack and public clouds,
+              with Gateway API at the front door. Fleets that stay reachable, observable and patched no
+              matter where they live.
             </p>
           </div>
           <svg class="radar" viewBox="0 0 400 200" aria-hidden="true">

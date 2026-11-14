@@ -3,35 +3,51 @@ const items = [
   'Kubernetes',
   'vLLM',
   'SGLang',
+  'TensorRT-LLM',
+  'Triton',
+  'llama.cpp',
   'KServe',
   'NVIDIA Dynamo',
   'NVIDIA NIM',
   'llm-d',
+  'LeaderWorkerSet',
+  'Ray Serve',
+  'KAITO',
   'Envoy AI Gateway',
+  'Inference Extension',
   'LiteLLM',
+  'GuideLLM',
+  'NVIDIA AIPerf',
+  'Kubernetes DRA',
+  'MIG',
+  'MPS',
+  'Time-slicing',
+  'Kueue',
+  'KAI Scheduler',
   'NVIDIA GPU Operator',
   'AMD GPU Operator',
   'DCGM',
-  'Kubernetes DRA',
-  'MIG',
-  'Kueue',
-  'KAI Scheduler',
-  'GuideLLM',
   'Prometheus',
   'Grafana',
   'KEDA',
+  'Go',
+  'React',
+  'TypeScript',
+  'Helm',
+  'Rook-Ceph',
   'Flux CD',
   'Argo CD',
   'Terraform',
   'Ansible',
-  'Go',
-  'Helm',
-  'Rook-Ceph',
+  'AWS',
+  'SageMaker',
+  'Azure',
+  'GCP',
+  'OpenStack',
   'Gateway API',
   'WireGuard',
   'ML-KEM',
   'ML-DSA',
-  'OpenStack',
 ];
 const half = Math.ceil(items.length / 2);
 const rows = [items.slice(0, half), items.slice(half)];
@@ -71,12 +87,12 @@ const rows = [items.slice(0, half), items.slice(half)];
   .track {
     display: flex;
     width: max-content;
-    animation: scroll 50s linear infinite;
+    animation: scroll 75s linear infinite;
   }
 
   .track.reverse {
     animation-direction: reverse;
-    animation-duration: 60s;
+    animation-duration: 90s;
   }
 
   .marquee:hover .track {
